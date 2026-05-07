@@ -1,7 +1,0 @@
-# Optional: RoboBrain2.5 / Qwen3-VL (model_type qwen3_vl) needs newer Transformers than the base BaGLM pin.
-# Install on top of the main environment:
-#   pip install -r requirements_robobrain.txt
-#
-# Note: Upgrading transformers may affect InternVL / LLaVA paths; re-run a quick smoke test if you rely on them.
-
-transformers>=4.57.0,<5.0

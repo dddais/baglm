@@ -1,9 +1,0 @@
-You are watching a video segment. The person in the video was attempting to: {success_criteria}
-
-Look at the current scene carefully and judge whether this step has been completed successfully.
-
-Options:
-A. Yes, completed successfully
-B. No, there is a problem
-
-Answer with only the letter (A or B).

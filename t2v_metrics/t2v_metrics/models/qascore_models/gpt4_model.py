@@ -1,4 +1,3 @@
-import os
 from typing import List
 
 import tiktoken
@@ -22,20 +21,18 @@ class GPT4Model(QAScoreModel):
         device="cuda",
         cache_dir=None,
         api_key=None,
-        base_url=None,
         top_logprobs=2,
     ):
         assert model_name in GPT4_MODELS
         assert api_key is not None, "Please provide an OpenAI API key"
         self.api_key = api_key
-        self.base_url = base_url or os.environ.get("OPENAI_BASE_URL")
         self.top_logprobs = top_logprobs
         super().__init__(model_name=model_name, device=device, cache_dir=cache_dir)
 
     def load_model(self):
         tokenizer_name = "gpt-4o" if self.model_name == "gpt-4.1-mini" else self.model_name
         self.tokenizer = tiktoken.encoding_for_model(tokenizer_name)
-        self.client = OpenAI(api_key=self.api_key, base_url=self.base_url)
+        self.client = OpenAI(api_key=self.api_key)
 
     def load_images(self, image: List[str]) -> torch.Tensor:
         """Load the image(s), and return a tensor (after preprocessing) put on self.device."""

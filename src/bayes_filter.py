@@ -96,7 +96,7 @@ def parse_args() -> argparse.Namespace:
         "--dataset",
         type=str,
         required=True,
-        choices=["htstep", "crosstask", "ego4d_goalstep", "coin", "custom"],
+        choices=["htstep", "crosstask", "ego4d_goalstep", "coin"],
     )
     parser.add_argument("--model", default="internvl2.5-8b", type=str)
     parser.add_argument("--video_annots_file", required=True, type=str)
@@ -131,8 +131,6 @@ def get_grouping_key(v: Dict[str, Any], dataset: str):
         return v["video_uid"]
     if dataset == "coin":
         return v["activity"]
-    if dataset == "custom":
-        return (v["activity"], v.get("variation", "none"))
     raise ValueError(f"Unknown dataset {dataset}")
 
 
@@ -237,7 +235,6 @@ def main():
         "crosstask": "crosstask_recall",
         "ego4d_goalstep": "ego4d_goalstep_recall",
         "coin": "coin_recall",
-        "custom": "custom_recall",
     }
     module = importlib.import_module(dataset_modules[args.dataset])
     get_Y_pred, get_Y_true, get_recall = module.get_Y_pred, module.get_Y_true, module.get_recall
