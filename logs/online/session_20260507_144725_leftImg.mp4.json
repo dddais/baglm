@@ -1,0 +1,241 @@
+{
+  "timestamp": "20260507_144725",
+  "source": "/mnt/public1/dais/baglm_data/restock_cola/videos/leftImg.mp4",
+  "server": "localhost:9999",
+  "segment_duration": 2,
+  "sampling_fps": 2,
+  "total_segments": 15,
+  "avg_confidence": 0.4385,
+  "max_confidence": 0.7501,
+  "min_confidence": 0.1681,
+  "avg_inference_ms": 472.4,
+  "step_transitions": [
+    {
+      "seg": 1,
+      "from": null,
+      "to": "Pick up one cola can from the black shelf"
+    },
+    {
+      "seg": 9,
+      "from": "Pick up one cola can from the black shelf",
+      "to": "Put the cola can on the white shelf"
+    },
+    {
+      "seg": 15,
+      "from": "Put the cola can on the white shelf",
+      "to": "Pick up one cola can from the black shelf"
+    }
+  ],
+  "results": [
+    {
+      "seg": 1,
+      "time": 1778136439.2578406,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.16812995076179504,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.1681,
+        "Put the cola can on the white shelf": 0.115,
+        "<none>": 0.7168
+      },
+      "round_trip_ms": 1272.4,
+      "inference_ms": 1265.8
+    },
+    {
+      "seg": 2,
+      "time": 1778136439.5457075,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.19547076523303986,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.1955,
+        "Put the cola can on the white shelf": 0.0978,
+        "<none>": 0.7067
+      },
+      "round_trip_ms": 287.8,
+      "inference_ms": 281.9
+    },
+    {
+      "seg": 3,
+      "time": 1778136439.9703658,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.6408778429031372,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.6409,
+        "Put the cola can on the white shelf": 0.1447,
+        "<none>": 0.2144
+      },
+      "round_trip_ms": 424.6,
+      "inference_ms": 421.9
+    },
+    {
+      "seg": 4,
+      "time": 1778136440.4031544,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.6366643309593201,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.6367,
+        "Put the cola can on the white shelf": 0.0468,
+        "<none>": 0.3165
+      },
+      "round_trip_ms": 432.7,
+      "inference_ms": 430.4
+    },
+    {
+      "seg": 5,
+      "time": 1778136440.8393693,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.7500523328781128,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.7501,
+        "Put the cola can on the white shelf": 0.0481,
+        "<none>": 0.2019
+      },
+      "round_trip_ms": 436.2,
+      "inference_ms": 430.6
+    },
+    {
+      "seg": 6,
+      "time": 1778136441.126704,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.27572154998779297,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.2757,
+        "Put the cola can on the white shelf": 0.0199,
+        "<none>": 0.7043
+      },
+      "round_trip_ms": 287.3,
+      "inference_ms": 284.4
+    },
+    {
+      "seg": 7,
+      "time": 1778136441.5545213,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.3480246067047119,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.348,
+        "Put the cola can on the white shelf": 0.0582,
+        "<none>": 0.5938
+      },
+      "round_trip_ms": 427.8,
+      "inference_ms": 425.2
+    },
+    {
+      "seg": 8,
+      "time": 1778136441.9831455,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.37045323848724365,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.3705,
+        "Put the cola can on the white shelf": 0.2288,
+        "<none>": 0.4008
+      },
+      "round_trip_ms": 428.6,
+      "inference_ms": 426.3
+    },
+    {
+      "seg": 9,
+      "time": 1778136442.498583,
+      "step": "Put the cola can on the white shelf",
+      "step_idx": 1,
+      "confidence": 0.26882120966911316,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.1159,
+        "Put the cola can on the white shelf": 0.2688,
+        "<none>": 0.6153
+      },
+      "round_trip_ms": 515.4,
+      "inference_ms": 513.2
+    },
+    {
+      "seg": 10,
+      "time": 1778136442.9223864,
+      "step": "Put the cola can on the white shelf",
+      "step_idx": 1,
+      "confidence": 0.5206701159477234,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.2106,
+        "Put the cola can on the white shelf": 0.5207,
+        "<none>": 0.2687
+      },
+      "round_trip_ms": 423.8,
+      "inference_ms": 421.5
+    },
+    {
+      "seg": 11,
+      "time": 1778136443.4150124,
+      "step": "Put the cola can on the white shelf",
+      "step_idx": 1,
+      "confidence": 0.5321828722953796,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.1204,
+        "Put the cola can on the white shelf": 0.5322,
+        "<none>": 0.3474
+      },
+      "round_trip_ms": 492.6,
+      "inference_ms": 490.4
+    },
+    {
+      "seg": 12,
+      "time": 1778136443.7239752,
+      "step": "Put the cola can on the white shelf",
+      "step_idx": 1,
+      "confidence": 0.5055289268493652,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.2339,
+        "Put the cola can on the white shelf": 0.5055,
+        "<none>": 0.2606
+      },
+      "round_trip_ms": 308.9,
+      "inference_ms": 306.8
+    },
+    {
+      "seg": 13,
+      "time": 1778136444.1661272,
+      "step": "Put the cola can on the white shelf",
+      "step_idx": 1,
+      "confidence": 0.5340489745140076,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.2441,
+        "Put the cola can on the white shelf": 0.534,
+        "<none>": 0.2219
+      },
+      "round_trip_ms": 442.1,
+      "inference_ms": 439.8
+    },
+    {
+      "seg": 14,
+      "time": 1778136444.596835,
+      "step": "Put the cola can on the white shelf",
+      "step_idx": 1,
+      "confidence": 0.2714379131793976,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.0719,
+        "Put the cola can on the white shelf": 0.2714,
+        "<none>": 0.6567
+      },
+      "round_trip_ms": 430.7,
+      "inference_ms": 427.9
+    },
+    {
+      "seg": 15,
+      "time": 1778136445.118843,
+      "step": "Pick up one cola can from the black shelf",
+      "step_idx": 0,
+      "confidence": 0.5600488185882568,
+      "belief": {
+        "Pick up one cola can from the black shelf": 0.56,
+        "Put the cola can on the white shelf": 0.1361,
+        "<none>": 0.3038
+      },
+      "round_trip_ms": 522.0,
+      "inference_ms": 519.6
+    }
+  ]
+}

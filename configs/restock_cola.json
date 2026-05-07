@@ -1,0 +1,12 @@
+{
+    "activity": "Restock Cola",
+    "variation": "none",
+    "step_headline": [
+        "Pick up one cola can from the black shelf",
+        "Put the cola can on the white shelf"
+    ],
+    "step_success_criteria": [
+        "A cola can has been picked up from the black shelf and is held in the gripper",
+        "The cola can has been placed on the white shelf in an upright, stable position"
+    ]
+}

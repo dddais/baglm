@@ -1,0 +1,15 @@
+{
+    "_comment": "Template for creating a new task config. Copy this file and modify it.",
+    "activity": "My Task Name",
+    "variation": "none",
+    "step_headline": [
+        "Step 1 description",
+        "Step 2 description",
+        "Step 3 description"
+    ],
+    "step_success_criteria": [
+        "Optional: description of what success looks like for step 1 (used for step verification)",
+        "Optional: description of what success looks like for step 2",
+        "Optional: description of what success looks like for step 3"
+    ]
+}
