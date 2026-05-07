@@ -1,0 +1,8 @@
+You are watching a video segment recorded from a robot's wrist-mounted camera (first-person view from the robot's gripper). The robot is attempting to {goal}. In the frames you may see the robot's mechanical gripper or fingers, and the objects being manipulated, often from a close, low angle that swings as the arm moves.
+
+What is the main action being performed in this exact moment? Focus on what the gripper is doing relative to the objects (approaching, grasping, lifting, transporting, placing, or releasing).
+
+Options:
+{choices}
+
+Answer with only the letter label of the correct option (e.g., A, B, ..., Z, AA, AB, etc.), with no extra text.

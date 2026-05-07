@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>BaGLM Session Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; margin: 20px; background: #f8f9fa; }
+  h1 { color: #2c3e50; }
+  h2 { color: #34495e; margin-top: 30px; }
+  .stats { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+  .stat-card { background: white; border-radius: 8px; padding: 15px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-width: 150px; }
+  .stat-card .value { font-size: 28px; font-weight: bold; color: #2c3e50; }
+  .stat-card .label { font-size: 13px; color: #7f8c8d; }
+  .chart-container { background: white; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  table { border-collapse: collapse; width: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  th { background: #2c3e50; color: white; padding: 10px 15px; text-align: left; }
+  td { padding: 8px 15px; border-bottom: 1px solid #ecf0f1; }
+  tr:hover td { background: #f1f2f6; }
+  .step-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+  .conf-high { background: #d4edda; color: #155724; }
+  .conf-mid  { background: #fff3cd; color: #856404; }
+  .conf-low  { background: #f8d7da; color: #721c24; }
+  .timeline { display: flex; align-items: center; gap: 2px; margin: 15px 0; flex-wrap: wrap; }
+  .timeline-block { padding: 6px 10px; border-radius: 4px; font-size: 11px; color: white; text-align: center; min-width: 30px; }
+  .meta { color: #7f8c8d; font-size: 14px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<h1>BaGLM Online Session Report</h1>
+<div class="meta">
+  Source: /mnt/public1/dais/baglm_data/restock_cola/videos/leftImg.mp4 &nbsp;|&nbsp; Server: localhost:9999 &nbsp;|&nbsp;
+  Segments: 35 &nbsp;|&nbsp;
+  Time: 20260507_145036
+</div>
+
+<div class="stats">
+  <div class="stat-card"><div class="value">0.423</div><div class="label">Avg Confidence</div></div>
+  <div class="stat-card"><div class="value">0.756</div><div class="label">Max Confidence</div></div>
+  <div class="stat-card"><div class="value">0.047</div><div class="label">Min Confidence</div></div>
+  <div class="stat-card"><div class="value">445ms</div><div class="label">Avg Inference</div></div>
+  <div class="stat-card"><div class="value">6</div><div class="label">Step Transitions</div></div>
+</div>
+
+<h2>Step Timeline</h2>
+<div class="timeline" id="timeline"></div>
+
+<h2>Belief Evolution</h2>
+<div class="chart-container">
+  <canvas id="beliefChart" height="100"></canvas>
+</div>
+
+<h2>Confidence & Latency</h2>
+<div class="chart-container">
+  <canvas id="metricChart" height="80"></canvas>
+</div>
+
+<h2>Per-Segment Details</h2>
+<table>
+  <tr>
+    <th>Seg</th><th>Step</th><th>Confidence</th><th>Belief (top)</th>
+    <th>Inference</th><th>Round-trip</th>
+  </tr>
+  <tr><td>1</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-low">0.168</span></td><td style="font-size:12px"><none>: 0.72 Pick up one cola can from the black shelf: 0.17 Put the cola can on the white shelf: 0.12</td><td>1250ms</td><td>1255ms</td></tr>
+<tr><td>2</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-low">0.195</span></td><td style="font-size:12px"><none>: 0.71 Pick up one cola can from the black shelf: 0.20 Put the cola can on the white shelf: 0.10</td><td>283ms</td><td>288ms</td></tr>
+<tr><td>3</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.641</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.64 <none>: 0.21 Put the cola can on the white shelf: 0.14</td><td>479ms</td><td>482ms</td></tr>
+<tr><td>4</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.637</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.64 <none>: 0.32 Put the cola can on the white shelf: 0.05</td><td>468ms</td><td>470ms</td></tr>
+<tr><td>5</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.750</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.75 <none>: 0.20 Put the cola can on the white shelf: 0.05</td><td>464ms</td><td>466ms</td></tr>
+<tr><td>6</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.276</span></td><td style="font-size:12px"><none>: 0.70 Pick up one cola can from the black shelf: 0.28 Put the cola can on the white shelf: 0.02</td><td>440ms</td><td>442ms</td></tr>
+<tr><td>7</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.348</span></td><td style="font-size:12px"><none>: 0.59 Pick up one cola can from the black shelf: 0.35 Put the cola can on the white shelf: 0.06</td><td>284ms</td><td>287ms</td></tr>
+<tr><td>8</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.370</span></td><td style="font-size:12px"><none>: 0.40 Pick up one cola can from the black shelf: 0.37 Put the cola can on the white shelf: 0.23</td><td>420ms</td><td>422ms</td></tr>
+<tr><td>9</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.269</span></td><td style="font-size:12px"><none>: 0.62 Put the cola can on the white shelf: 0.27 Pick up one cola can from the black shelf: 0.12</td><td>506ms</td><td>510ms</td></tr>
+<tr><td>10</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.521</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.52 <none>: 0.27 Pick up one cola can from the black shelf: 0.21</td><td>425ms</td><td>427ms</td></tr>
+<tr><td>11</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.532</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.53 <none>: 0.35 Pick up one cola can from the black shelf: 0.12</td><td>430ms</td><td>433ms</td></tr>
+<tr><td>12</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.506</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.51 <none>: 0.26 Pick up one cola can from the black shelf: 0.23</td><td>284ms</td><td>287ms</td></tr>
+<tr><td>13</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.534</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.53 Pick up one cola can from the black shelf: 0.24 <none>: 0.22</td><td>428ms</td><td>431ms</td></tr>
+<tr><td>14</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.271</span></td><td style="font-size:12px"><none>: 0.66 Put the cola can on the white shelf: 0.27 Pick up one cola can from the black shelf: 0.07</td><td>426ms</td><td>428ms</td></tr>
+<tr><td>15</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.560</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.56 <none>: 0.30 Put the cola can on the white shelf: 0.14</td><td>547ms</td><td>549ms</td></tr>
+<tr><td>16</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.620</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.62 <none>: 0.31 Put the cola can on the white shelf: 0.07</td><td>444ms</td><td>446ms</td></tr>
+<tr><td>17</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.376</span></td><td style="font-size:12px"><none>: 0.61 Pick up one cola can from the black shelf: 0.38 Put the cola can on the white shelf: 0.02</td><td>458ms</td><td>460ms</td></tr>
+<tr><td>18</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.300</span></td><td style="font-size:12px"><none>: 0.59 Pick up one cola can from the black shelf: 0.30 Put the cola can on the white shelf: 0.11</td><td>286ms</td><td>288ms</td></tr>
+<tr><td>19</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.405</span></td><td style="font-size:12px"><none>: 0.54 Pick up one cola can from the black shelf: 0.40 Put the cola can on the white shelf: 0.06</td><td>430ms</td><td>433ms</td></tr>
+<tr><td>20</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.370</span></td><td style="font-size:12px"><none>: 0.50 Put the cola can on the white shelf: 0.37 Pick up one cola can from the black shelf: 0.13</td><td>514ms</td><td>516ms</td></tr>
+<tr><td>21</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.362</span></td><td style="font-size:12px"><none>: 0.53 Put the cola can on the white shelf: 0.36 Pick up one cola can from the black shelf: 0.11</td><td>425ms</td><td>427ms</td></tr>
+<tr><td>22</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.431</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.43 <none>: 0.42 Pick up one cola can from the black shelf: 0.15</td><td>436ms</td><td>438ms</td></tr>
+<tr><td>23</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.537</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.54 Pick up one cola can from the black shelf: 0.29 <none>: 0.18</td><td>283ms</td><td>285ms</td></tr>
+<tr><td>24</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.347</span></td><td style="font-size:12px"><none>: 0.42 Put the cola can on the white shelf: 0.35 Pick up one cola can from the black shelf: 0.23</td><td>431ms</td><td>433ms</td></tr>
+<tr><td>25</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.631</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.63 Put the cola can on the white shelf: 0.23 <none>: 0.14</td><td>529ms</td><td>531ms</td></tr>
+<tr><td>26</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.756</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.76 Put the cola can on the white shelf: 0.14 <none>: 0.11</td><td>473ms</td><td>476ms</td></tr>
+<tr><td>27</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.390</span></td><td style="font-size:12px"><none>: 0.47 Pick up one cola can from the black shelf: 0.39 Put the cola can on the white shelf: 0.14</td><td>473ms</td><td>475ms</td></tr>
+<tr><td>28</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.274</span></td><td style="font-size:12px"><none>: 0.59 Put the cola can on the white shelf: 0.27 Pick up one cola can from the black shelf: 0.14</td><td>527ms</td><td>530ms</td></tr>
+<tr><td>29</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.304</span></td><td style="font-size:12px"><none>: 0.65 Put the cola can on the white shelf: 0.30 Pick up one cola can from the black shelf: 0.05</td><td>428ms</td><td>430ms</td></tr>
+<tr><td>30</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.405</span></td><td style="font-size:12px"><none>: 0.47 Put the cola can on the white shelf: 0.40 Pick up one cola can from the black shelf: 0.13</td><td>281ms</td><td>284ms</td></tr>
+<tr><td>31</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.513</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.51 <none>: 0.27 Pick up one cola can from the black shelf: 0.22</td><td>436ms</td><td>438ms</td></tr>
+<tr><td>32</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-high">0.694</span></td><td style="font-size:12px">Put the cola can on the white shelf: 0.69 <none>: 0.22 Pick up one cola can from the black shelf: 0.09</td><td>433ms</td><td>435ms</td></tr>
+<tr><td>33</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.247</span></td><td style="font-size:12px"><none>: 0.71 Put the cola can on the white shelf: 0.25 Pick up one cola can from the black shelf: 0.04</td><td>442ms</td><td>444ms</td></tr>
+<tr><td>34</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-mid">0.239</span></td><td style="font-size:12px"><none>: 0.66 Put the cola can on the white shelf: 0.24 Pick up one cola can from the black shelf: 0.10</td><td>365ms</td><td>367ms</td></tr>
+<tr><td>35</td><td><span class="step-tag" style="background:#2ecc7133;color:#2ecc71">Put the cola can on the white shelf</span></td><td><span class="step-tag conf-low">0.047</span></td><td style="font-size:12px"><none>: 0.91 Put the cola can on the white shelf: 0.05 Pick up one cola can from the black shelf: 0.04</td><td>336ms</td><td>339ms</td></tr>
+</table>
+
+<script>
+// Step colors
+const stepColors = {"<none>": "#e74c3c", "Pick up one cola can from the black shelf": "#3498db", "Put the cola can on the white shelf": "#2ecc71"};
+const allSteps = ["<none>", "Pick up one cola can from the black shelf", "Put the cola can on the white shelf"];
+
+// Timeline
+const timelineEl = document.getElementById('timeline');
+const segData = [{"seg": 1, "step": "Pick up one cola can from the black shelf", "confidence": 0.16812995076179504, "inference_ms": 1250.5, "belief": {"Pick up one cola can from the black shelf": 0.1681, "Put the cola can on the white shelf": 0.115, "<none>": 0.7168}}, {"seg": 2, "step": "Pick up one cola can from the black shelf", "confidence": 0.19547076523303986, "inference_ms": 283.4, "belief": {"Pick up one cola can from the black shelf": 0.1955, "Put the cola can on the white shelf": 0.0978, "<none>": 0.7067}}, {"seg": 3, "step": "Pick up one cola can from the black shelf", "confidence": 0.6408778429031372, "inference_ms": 478.6, "belief": {"Pick up one cola can from the black shelf": 0.6409, "Put the cola can on the white shelf": 0.1447, "<none>": 0.2144}}, {"seg": 4, "step": "Pick up one cola can from the black shelf", "confidence": 0.6366643309593201, "inference_ms": 467.7, "belief": {"Pick up one cola can from the black shelf": 0.6367, "Put the cola can on the white shelf": 0.0468, "<none>": 0.3165}}, {"seg": 5, "step": "Pick up one cola can from the black shelf", "confidence": 0.7500523328781128, "inference_ms": 464.0, "belief": {"Pick up one cola can from the black shelf": 0.7501, "Put the cola can on the white shelf": 0.0481, "<none>": 0.2019}}, {"seg": 6, "step": "Pick up one cola can from the black shelf", "confidence": 0.27572154998779297, "inference_ms": 439.9, "belief": {"Pick up one cola can from the black shelf": 0.2757, "Put the cola can on the white shelf": 0.0199, "<none>": 0.7043}}, {"seg": 7, "step": "Pick up one cola can from the black shelf", "confidence": 0.3480246067047119, "inference_ms": 284.4, "belief": {"Pick up one cola can from the black shelf": 0.348, "Put the cola can on the white shelf": 0.0582, "<none>": 0.5938}}, {"seg": 8, "step": "Pick up one cola can from the black shelf", "confidence": 0.37045323848724365, "inference_ms": 419.6, "belief": {"Pick up one cola can from the black shelf": 0.3705, "Put the cola can on the white shelf": 0.2288, "<none>": 0.4008}}, {"seg": 9, "step": "Put the cola can on the white shelf", "confidence": 0.26882120966911316, "inference_ms": 505.8, "belief": {"Pick up one cola can from the black shelf": 0.1159, "Put the cola can on the white shelf": 0.2688, "<none>": 0.6153}}, {"seg": 10, "step": "Put the cola can on the white shelf", "confidence": 0.5206701159477234, "inference_ms": 424.7, "belief": {"Pick up one cola can from the black shelf": 0.2106, "Put the cola can on the white shelf": 0.5207, "<none>": 0.2687}}, {"seg": 11, "step": "Put the cola can on the white shelf", "confidence": 0.5321828722953796, "inference_ms": 430.3, "belief": {"Pick up one cola can from the black shelf": 0.1204, "Put the cola can on the white shelf": 0.5322, "<none>": 0.3474}}, {"seg": 12, "step": "Put the cola can on the white shelf", "confidence": 0.5055289268493652, "inference_ms": 284.0, "belief": {"Pick up one cola can from the black shelf": 0.2339, "Put the cola can on the white shelf": 0.5055, "<none>": 0.2606}}, {"seg": 13, "step": "Put the cola can on the white shelf", "confidence": 0.5340489745140076, "inference_ms": 428.5, "belief": {"Pick up one cola can from the black shelf": 0.2441, "Put the cola can on the white shelf": 0.534, "<none>": 0.2219}}, {"seg": 14, "step": "Put the cola can on the white shelf", "confidence": 0.2714379131793976, "inference_ms": 425.7, "belief": {"Pick up one cola can from the black shelf": 0.0719, "Put the cola can on the white shelf": 0.2714, "<none>": 0.6567}}, {"seg": 15, "step": "Pick up one cola can from the black shelf", "confidence": 0.5600488185882568, "inference_ms": 547.1, "belief": {"Pick up one cola can from the black shelf": 0.56, "Put the cola can on the white shelf": 0.1361, "<none>": 0.3038}}, {"seg": 16, "step": "Pick up one cola can from the black shelf", "confidence": 0.6199244260787964, "inference_ms": 443.8, "belief": {"Pick up one cola can from the black shelf": 0.6199, "Put the cola can on the white shelf": 0.0706, "<none>": 0.3095}}, {"seg": 17, "step": "Pick up one cola can from the black shelf", "confidence": 0.37604066729545593, "inference_ms": 458.1, "belief": {"Pick up one cola can from the black shelf": 0.376, "Put the cola can on the white shelf": 0.0179, "<none>": 0.606}}, {"seg": 18, "step": "Pick up one cola can from the black shelf", "confidence": 0.29980698227882385, "inference_ms": 286.2, "belief": {"Pick up one cola can from the black shelf": 0.2998, "Put the cola can on the white shelf": 0.1146, "<none>": 0.5856}}, {"seg": 19, "step": "Pick up one cola can from the black shelf", "confidence": 0.40455806255340576, "inference_ms": 430.5, "belief": {"Pick up one cola can from the black shelf": 0.4046, "Put the cola can on the white shelf": 0.0571, "<none>": 0.5384}}, {"seg": 20, "step": "Put the cola can on the white shelf", "confidence": 0.36951813101768494, "inference_ms": 513.7, "belief": {"Pick up one cola can from the black shelf": 0.1309, "Put the cola can on the white shelf": 0.3695, "<none>": 0.4996}}, {"seg": 21, "step": "Put the cola can on the white shelf", "confidence": 0.3622235953807831, "inference_ms": 424.9, "belief": {"Pick up one cola can from the black shelf": 0.1124, "Put the cola can on the white shelf": 0.3622, "<none>": 0.5253}}, {"seg": 22, "step": "Put the cola can on the white shelf", "confidence": 0.4305938482284546, "inference_ms": 435.9, "belief": {"Pick up one cola can from the black shelf": 0.1497, "Put the cola can on the white shelf": 0.4306, "<none>": 0.4197}}, {"seg": 23, "step": "Put the cola can on the white shelf", "confidence": 0.5367446541786194, "inference_ms": 282.9, "belief": {"Pick up one cola can from the black shelf": 0.2858, "Put the cola can on the white shelf": 0.5367, "<none>": 0.1774}}, {"seg": 24, "step": "Put the cola can on the white shelf", "confidence": 0.3469338119029999, "inference_ms": 431.3, "belief": {"Pick up one cola can from the black shelf": 0.2337, "Put the cola can on the white shelf": 0.3469, "<none>": 0.4194}}, {"seg": 25, "step": "Pick up one cola can from the black shelf", "confidence": 0.6309473514556885, "inference_ms": 528.9, "belief": {"Pick up one cola can from the black shelf": 0.6309, "Put the cola can on the white shelf": 0.2292, "<none>": 0.1398}}, {"seg": 26, "step": "Pick up one cola can from the black shelf", "confidence": 0.7557191848754883, "inference_ms": 473.1, "belief": {"Pick up one cola can from the black shelf": 0.7557, "Put the cola can on the white shelf": 0.1374, "<none>": 0.1069}}, {"seg": 27, "step": "Pick up one cola can from the black shelf", "confidence": 0.3904735743999481, "inference_ms": 472.7, "belief": {"Pick up one cola can from the black shelf": 0.3905, "Put the cola can on the white shelf": 0.1436, "<none>": 0.4659}}, {"seg": 28, "step": "Put the cola can on the white shelf", "confidence": 0.2736242115497589, "inference_ms": 527.2, "belief": {"Pick up one cola can from the black shelf": 0.1386, "Put the cola can on the white shelf": 0.2736, "<none>": 0.5878}}, {"seg": 29, "step": "Put the cola can on the white shelf", "confidence": 0.30394572019577026, "inference_ms": 427.6, "belief": {"Pick up one cola can from the black shelf": 0.0465, "Put the cola can on the white shelf": 0.3039, "<none>": 0.6495}}, {"seg": 30, "step": "Put the cola can on the white shelf", "confidence": 0.40492963790893555, "inference_ms": 280.8, "belief": {"Pick up one cola can from the black shelf": 0.1258, "Put the cola can on the white shelf": 0.4049, "<none>": 0.4693}}, {"seg": 31, "step": "Put the cola can on the white shelf", "confidence": 0.5126107931137085, "inference_ms": 435.5, "belief": {"Pick up one cola can from the black shelf": 0.2159, "Put the cola can on the white shelf": 0.5126, "<none>": 0.2715}}, {"seg": 32, "step": "Put the cola can on the white shelf", "confidence": 0.6936969757080078, "inference_ms": 432.8, "belief": {"Pick up one cola can from the black shelf": 0.0871, "Put the cola can on the white shelf": 0.6937, "<none>": 0.2192}}, {"seg": 33, "step": "Put the cola can on the white shelf", "confidence": 0.24686472117900848, "inference_ms": 442.2, "belief": {"Pick up one cola can from the black shelf": 0.0383, "Put the cola can on the white shelf": 0.2469, "<none>": 0.7148}}, {"seg": 34, "step": "Put the cola can on the white shelf", "confidence": 0.23883137106895447, "inference_ms": 364.8, "belief": {"Pick up one cola can from the black shelf": 0.1031, "Put the cola can on the white shelf": 0.2388, "<none>": 0.6581}}, {"seg": 35, "step": "Put the cola can on the white shelf", "confidence": 0.04694066941738129, "inference_ms": 336.5, "belief": {"Pick up one cola can from the black shelf": 0.0416, "Put the cola can on the white shelf": 0.0469, "<none>": 0.9115}}];
+segData.forEach(d => {
+  const block = document.createElement('div');
+  block.className = 'timeline-block';
+  block.style.backgroundColor = stepColors[d.step] || '#95a5a6';
+  block.style.flex = '1';
+  block.title = 'Seg ' + d.seg + ': ' + d.step + ' (' + (d.confidence*100).toFixed(1) + '%)';
+  block.textContent = d.seg;
+  timelineEl.appendChild(block);
+});
+
+// Belief chart
+new Chart(document.getElementById('beliefChart'), {
+  type: 'line',
+  data: {
+    labels: segData.map(d => d.seg),
+    datasets: allSteps.map(step => ({
+      label: step,
+      data: segData.map(d => d.belief[step] || 0),
+      borderColor: stepColors[step],
+      backgroundColor: stepColors[step] + '33',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 3,
+    }))
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { min: 0, max: 1, title: { display: true, text: 'Belief' } },
+      x: { title: { display: true, text: 'Segment' } }
+    },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+
+// Metric chart
+new Chart(document.getElementById('metricChart'), {
+  type: 'bar',
+  data: {
+    labels: segData.map(d => d.seg),
+    datasets: [
+      {
+        label: 'Confidence',
+        data: segData.map(d => d.confidence),
+        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+        yAxisID: 'y',
+      },
+      {
+        label: 'Inference (ms)',
+        data: segData.map(d => d.inference_ms),
+        type: 'line',
+        borderColor: 'rgba(231, 76, 60, 0.9)',
+        backgroundColor: 'transparent',
+        yAxisID: 'y1',
+        tension: 0.3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y:  { min: 0, max: 1, position: 'left', title: { display: true, text: 'Confidence' } },
+      y1: { min: 0, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Latency (ms)' } },
+      x:  { title: { display: true, text: 'Segment' } }
+    },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+</script>
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>BaGLM Session Report</title>
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<style>
+  body { font-family: -apple-system, "Segoe UI", Roboto, sans-serif; margin: 20px; background: #f8f9fa; }
+  h1 { color: #2c3e50; }
+  h2 { color: #34495e; margin-top: 30px; }
+  .stats { display: flex; gap: 20px; flex-wrap: wrap; margin: 20px 0; }
+  .stat-card { background: white; border-radius: 8px; padding: 15px 25px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); min-width: 150px; }
+  .stat-card .value { font-size: 28px; font-weight: bold; color: #2c3e50; }
+  .stat-card .label { font-size: 13px; color: #7f8c8d; }
+  .chart-container { background: white; border-radius: 8px; padding: 20px; margin: 15px 0; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  table { border-collapse: collapse; width: 100%; background: white; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+  th { background: #2c3e50; color: white; padding: 10px 15px; text-align: left; }
+  td { padding: 8px 15px; border-bottom: 1px solid #ecf0f1; }
+  tr:hover td { background: #f1f2f6; }
+  .step-tag { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 12px; font-weight: 500; }
+  .conf-high { background: #d4edda; color: #155724; }
+  .conf-mid  { background: #fff3cd; color: #856404; }
+  .conf-low  { background: #f8d7da; color: #721c24; }
+  .timeline { display: flex; align-items: center; gap: 2px; margin: 15px 0; flex-wrap: wrap; }
+  .timeline-block { padding: 6px 10px; border-radius: 4px; font-size: 11px; color: white; text-align: center; min-width: 30px; }
+  .meta { color: #7f8c8d; font-size: 14px; margin-bottom: 10px; }
+</style>
+</head>
+<body>
+
+<h1>BaGLM Online Session Report</h1>
+<div class="meta">
+  Source: /mnt/public1/dais/baglm_data/restock_cola/videos/leftImg.mp4 &nbsp;|&nbsp; Server: localhost:9999 &nbsp;|&nbsp;
+  Segments: 8 &nbsp;|&nbsp;
+  Time: 20260507_123812
+</div>
+
+<div class="stats">
+  <div class="stat-card"><div class="value">0.423</div><div class="label">Avg Confidence</div></div>
+  <div class="stat-card"><div class="value">0.750</div><div class="label">Max Confidence</div></div>
+  <div class="stat-card"><div class="value">0.168</div><div class="label">Min Confidence</div></div>
+  <div class="stat-card"><div class="value">385ms</div><div class="label">Avg Inference</div></div>
+  <div class="stat-card"><div class="value">1</div><div class="label">Step Transitions</div></div>
+</div>
+
+<h2>Step Timeline</h2>
+<div class="timeline" id="timeline"></div>
+
+<h2>Belief Evolution</h2>
+<div class="chart-container">
+  <canvas id="beliefChart" height="100"></canvas>
+</div>
+
+<h2>Confidence & Latency</h2>
+<div class="chart-container">
+  <canvas id="metricChart" height="80"></canvas>
+</div>
+
+<h2>Per-Segment Details</h2>
+<table>
+  <tr>
+    <th>Seg</th><th>Step</th><th>Confidence</th><th>Belief (top)</th>
+    <th>Inference</th><th>Round-trip</th>
+  </tr>
+  <tr><td>1</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-low">0.168</span></td><td style="font-size:12px"><none>: 0.72 Pick up one cola can from the black shelf: 0.17 Put the cola can on the white shelf: 0.12</td><td>406ms</td><td>409ms</td></tr>
+<tr><td>2</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-low">0.195</span></td><td style="font-size:12px"><none>: 0.71 Pick up one cola can from the black shelf: 0.20 Put the cola can on the white shelf: 0.10</td><td>416ms</td><td>418ms</td></tr>
+<tr><td>3</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.641</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.64 <none>: 0.21 Put the cola can on the white shelf: 0.14</td><td>420ms</td><td>422ms</td></tr>
+<tr><td>4</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.637</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.64 <none>: 0.32 Put the cola can on the white shelf: 0.05</td><td>284ms</td><td>286ms</td></tr>
+<tr><td>5</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-high">0.750</span></td><td style="font-size:12px">Pick up one cola can from the black shelf: 0.75 <none>: 0.20 Put the cola can on the white shelf: 0.05</td><td>418ms</td><td>420ms</td></tr>
+<tr><td>6</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.276</span></td><td style="font-size:12px"><none>: 0.70 Pick up one cola can from the black shelf: 0.28 Put the cola can on the white shelf: 0.02</td><td>433ms</td><td>436ms</td></tr>
+<tr><td>7</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.348</span></td><td style="font-size:12px"><none>: 0.59 Pick up one cola can from the black shelf: 0.35 Put the cola can on the white shelf: 0.06</td><td>419ms</td><td>422ms</td></tr>
+<tr><td>8</td><td><span class="step-tag" style="background:#3498db33;color:#3498db">Pick up one cola can from the black shelf</span></td><td><span class="step-tag conf-mid">0.370</span></td><td style="font-size:12px"><none>: 0.40 Pick up one cola can from the black shelf: 0.37 Put the cola can on the white shelf: 0.23</td><td>284ms</td><td>286ms</td></tr>
+</table>
+
+<script>
+// Step colors
+const stepColors = {"<none>": "#e74c3c", "Pick up one cola can from the black shelf": "#3498db", "Put the cola can on the white shelf": "#2ecc71"};
+const allSteps = ["<none>", "Pick up one cola can from the black shelf", "Put the cola can on the white shelf"];
+
+// Timeline
+const timelineEl = document.getElementById('timeline');
+const segData = [{"seg": 1, "step": "Pick up one cola can from the black shelf", "confidence": 0.16812995076179504, "inference_ms": 406.5, "belief": {"Pick up one cola can from the black shelf": 0.1681, "Put the cola can on the white shelf": 0.115, "<none>": 0.7168}}, {"seg": 2, "step": "Pick up one cola can from the black shelf", "confidence": 0.19547076523303986, "inference_ms": 416.0, "belief": {"Pick up one cola can from the black shelf": 0.1955, "Put the cola can on the white shelf": 0.0978, "<none>": 0.7067}}, {"seg": 3, "step": "Pick up one cola can from the black shelf", "confidence": 0.6408778429031372, "inference_ms": 419.7, "belief": {"Pick up one cola can from the black shelf": 0.6409, "Put the cola can on the white shelf": 0.1447, "<none>": 0.2144}}, {"seg": 4, "step": "Pick up one cola can from the black shelf", "confidence": 0.6366643309593201, "inference_ms": 283.5, "belief": {"Pick up one cola can from the black shelf": 0.6367, "Put the cola can on the white shelf": 0.0468, "<none>": 0.3165}}, {"seg": 5, "step": "Pick up one cola can from the black shelf", "confidence": 0.7500523328781128, "inference_ms": 418.0, "belief": {"Pick up one cola can from the black shelf": 0.7501, "Put the cola can on the white shelf": 0.0481, "<none>": 0.2019}}, {"seg": 6, "step": "Pick up one cola can from the black shelf", "confidence": 0.27572154998779297, "inference_ms": 432.7, "belief": {"Pick up one cola can from the black shelf": 0.2757, "Put the cola can on the white shelf": 0.0199, "<none>": 0.7043}}, {"seg": 7, "step": "Pick up one cola can from the black shelf", "confidence": 0.3480246067047119, "inference_ms": 419.0, "belief": {"Pick up one cola can from the black shelf": 0.348, "Put the cola can on the white shelf": 0.0582, "<none>": 0.5938}}, {"seg": 8, "step": "Pick up one cola can from the black shelf", "confidence": 0.37045323848724365, "inference_ms": 283.5, "belief": {"Pick up one cola can from the black shelf": 0.3705, "Put the cola can on the white shelf": 0.2288, "<none>": 0.4008}}];
+segData.forEach(d => {
+  const block = document.createElement('div');
+  block.className = 'timeline-block';
+  block.style.backgroundColor = stepColors[d.step] || '#95a5a6';
+  block.style.flex = '1';
+  block.title = 'Seg ' + d.seg + ': ' + d.step + ' (' + (d.confidence*100).toFixed(1) + '%)';
+  block.textContent = d.seg;
+  timelineEl.appendChild(block);
+});
+
+// Belief chart
+new Chart(document.getElementById('beliefChart'), {
+  type: 'line',
+  data: {
+    labels: segData.map(d => d.seg),
+    datasets: allSteps.map(step => ({
+      label: step,
+      data: segData.map(d => d.belief[step] || 0),
+      borderColor: stepColors[step],
+      backgroundColor: stepColors[step] + '33',
+      fill: true,
+      tension: 0.3,
+      pointRadius: 3,
+    }))
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y: { min: 0, max: 1, title: { display: true, text: 'Belief' } },
+      x: { title: { display: true, text: 'Segment' } }
+    },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+
+// Metric chart
+new Chart(document.getElementById('metricChart'), {
+  type: 'bar',
+  data: {
+    labels: segData.map(d => d.seg),
+    datasets: [
+      {
+        label: 'Confidence',
+        data: segData.map(d => d.confidence),
+        backgroundColor: 'rgba(52, 152, 219, 0.7)',
+        yAxisID: 'y',
+      },
+      {
+        label: 'Inference (ms)',
+        data: segData.map(d => d.inference_ms),
+        type: 'line',
+        borderColor: 'rgba(231, 76, 60, 0.9)',
+        backgroundColor: 'transparent',
+        yAxisID: 'y1',
+        tension: 0.3,
+      }
+    ]
+  },
+  options: {
+    responsive: true,
+    scales: {
+      y:  { min: 0, max: 1, position: 'left', title: { display: true, text: 'Confidence' } },
+      y1: { min: 0, position: 'right', grid: { drawOnChartArea: false }, title: { display: true, text: 'Latency (ms)' } },
+      x:  { title: { display: true, text: 'Segment' } }
+    },
+    plugins: { legend: { position: 'bottom' } }
+  }
+});
+</script>
+</body>
+</html>
